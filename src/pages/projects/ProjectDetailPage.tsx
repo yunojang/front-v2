@@ -75,7 +75,7 @@ export default function ProjectDetailPage() {
         ) : null}
       </header>
 
-      <section className="grid gap-6 lg:grid-cols-[1.5fr,1fr]">
+      <section className="grid gap-6 lg:grid-cols-[1.75fr,1fr]">
         <ProjectLanguagePanel
           project={project}
           activeLanguage={activeLanguage}

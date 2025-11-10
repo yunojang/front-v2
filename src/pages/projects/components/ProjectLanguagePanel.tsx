@@ -1,6 +1,7 @@
 import { Download, Play } from 'lucide-react'
 
 import type { ProjectAsset, ProjectDetail } from '@/entities/project/types'
+import { env } from '@/shared/config/env'
 import { trackEvent } from '@/shared/lib/analytics'
 import { cn } from '@/shared/lib/utils'
 import { Button } from '@/shared/ui/Button'
@@ -74,7 +75,7 @@ function LanguagePreview({
   const selectedAsset = assets.find((asset) => asset.type === 'video')
   const translatedSource = selectedAsset?.url
   const previewSource = version === 'original' ? videoSource : (translatedSource ?? videoSource)
-  const videoSrc = `/api/storage/media/${previewSource}`
+  const videoSrc = `${env.apiBaseUrl}/api/storage/media/${previewSource}`
 
   return (
     <div className="space-y-5">
@@ -103,13 +104,13 @@ function LanguagePreview({
           )
         })}
       </div>
-      <div className="border-surface-3 bg-surface-1 relative overflow-hidden rounded-3xl border">
+      <div className="border-surface-3 bg-surface-1 relative overflow-hidden rounded-md border">
         {previewSource ? (
           <video
             key={`${language}-${version}`}
             controls
             autoPlay={false}
-            className="h-96 w-full bg-black object-cover"
+            className="h-[24em] w-full bg-black object-contain"
             src={videoSrc}
             preload="metadata"
           >
